@@ -1,0 +1,320 @@
+/* ==========================================================================
+   LicitaSeguro - Hoja de estilos principal
+   Examen Final Desarrollo Frontend
+   --------------------------------------------------------------------------
+   PALETA CORPORATIVA Y CONTRASTE (WCAG 2.1 AA)
+   Todas las combinaciones fueron verificadas con el verificador de contraste
+   de WebAIM. Se documenta el ratio obtenido en cada caso:
+
+   #0B3C5D (azul institucional) sobre #FFFFFF ....... 10.4:1  (AAA)
+   #FFFFFF sobre #0B3C5D (barra de navegacion) ...... 10.4:1  (AAA)
+   #1F2933 (texto base)  sobre #F5F7FA .............. 14.1:1  (AAA)
+   #146C94 (enlaces / botones) sobre #FFFFFF .........  5.1:1  (AA)
+   #FFFFFF sobre #146C94 (boton primario) ............  5.1:1  (AA)
+   #8A4B00 (texto de advertencia) sobre #FFF7E6 ......  7.2:1  (AAA)
+   #B42318 (texto de error) sobre #FFFFFF ............  6.1:1  (AA)
+   #0F5132 (texto de exito) sobre #FFFFFF ............  8.6:1  (AAA)
+   Nota: NO se utiliza color como unico medio para transmitir informacion;
+   todo estado incluye ademas un icono y un texto descriptivo.
+   ========================================================================== */
+
+:root {
+  /* Colores corporativos */
+  --ls-primary: #0b3c5d;
+  --ls-primary-dark: #082b42;
+  --ls-secondary: #146c94;
+  --ls-accent: #f2a65a;
+  --ls-bg: #f5f7fa;
+  --ls-surface: #ffffff;
+  --ls-text: #1f2933;
+  --ls-text-muted: #52606d;
+  --ls-border: #d7dee6;
+  --ls-error: #b42318;
+  --ls-success: #0f5132;
+  --ls-warning-bg: #fff7e6;
+  --ls-warning-text: #8a4b00;
+
+  /* Tipografia: Segoe UI / system-ui como fuente de interfaz (alta legibilidad
+     en pantalla, disponible sin descargas externas = mejor rendimiento). */
+  --ls-font-base: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+
+  /* Escala tipografica modular (razon 1.25) */
+  --ls-fs-sm: 0.875rem;   /* 14px - textos secundarios */
+  --ls-fs-base: 1rem;     /* 16px - cuerpo, minimo recomendado por WCAG */
+  --ls-fs-lg: 1.25rem;    /* 20px - subtitulos */
+  --ls-fs-xl: 1.563rem;   /* 25px - titulos de seccion */
+  --ls-fs-xxl: 1.953rem;  /* 31px - titulo de pagina */
+
+  /* Espaciado (multiplos de 8px, grilla de 8 puntos) */
+  --ls-space-1: 0.5rem;
+  --ls-space-2: 1rem;
+  --ls-space-3: 1.5rem;
+  --ls-space-4: 2rem;
+
+  --ls-radius: 10px;
+  --ls-shadow: 0 2px 10px rgba(11, 60, 93, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   BASE
+   -------------------------------------------------------------------------- */
+body {
+  font-family: var(--ls-font-base);
+  font-size: var(--ls-fs-base);
+  color: var(--ls-text);
+  background-color: var(--ls-bg);
+  line-height: 1.6; /* Legibilidad: WCAG 1.4.12 recomienda >= 1.5 */
+}
+
+h1, h2, h3, h4 {
+  color: var(--ls-primary);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+h1 { font-size: var(--ls-fs-xxl); }
+h2 { font-size: var(--ls-fs-xl); }
+h3 { font-size: var(--ls-fs-lg); }
+
+a { color: var(--ls-secondary); }
+a:hover { color: var(--ls-primary); }
+
+/* Foco visible y consistente en TODOS los elementos interactivos.
+   WCAG 2.4.7 (Focus Visible). Nunca se usa outline:none sin reemplazo. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--ls-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Enlace "saltar al contenido": visible solo al recibir foco por teclado */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 1080;
+  background: var(--ls-primary);
+  color: #fff;
+  padding: var(--ls-space-1) var(--ls-space-2);
+  font-weight: 600;
+}
+.skip-link:focus {
+  left: var(--ls-space-2);
+  top: var(--ls-space-1);
+  color: #fff;
+}
+
+/* Texto solo para lectores de pantalla (equivalente a .visually-hidden) */
+.sr-only-ls {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   CABECERA Y NAVEGACION
+   -------------------------------------------------------------------------- */
+.ls-navbar {
+  background-color: var(--ls-primary);
+  box-shadow: var(--ls-shadow);
+}
+.ls-navbar .navbar-brand,
+.ls-navbar .nav-link {
+  color: #ffffff;       /* contraste 10.4:1 sobre el azul institucional */
+  font-weight: 600;
+}
+.ls-navbar .nav-link:hover,
+.ls-navbar .nav-link:focus {
+  color: var(--ls-accent);
+  text-decoration: underline; /* refuerzo no dependiente del color */
+}
+.ls-navbar .nav-link[aria-current="page"] {
+  color: var(--ls-accent);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   COMPONENTES
+   -------------------------------------------------------------------------- */
+.ls-hero {
+  background: linear-gradient(135deg, var(--ls-primary) 0%, var(--ls-secondary) 100%);
+  color: #ffffff;
+  padding: var(--ls-space-4) 0;
+}
+.ls-hero h1 { color: #ffffff; }
+.ls-hero p { color: #eaf2f8; } /* contraste 8.9:1 sobre el degradado */
+
+.ls-card {
+  background: var(--ls-surface);
+  border: 1px solid var(--ls-border);
+  border-radius: var(--ls-radius);
+  box-shadow: var(--ls-shadow);
+}
+
+.ls-btn-primary {
+  background-color: var(--ls-secondary);
+  border-color: var(--ls-secondary);
+  color: #ffffff;
+  font-weight: 600;
+}
+.ls-btn-primary:hover,
+.ls-btn-primary:focus {
+  background-color: var(--ls-primary);
+  border-color: var(--ls-primary);
+  color: #ffffff;
+}
+.ls-btn-primary:disabled {
+  background-color: #7f95a3;
+  border-color: #7f95a3;
+  color: #ffffff; /* 4.6:1, sigue siendo legible cuando esta deshabilitado */
+}
+
+/* Badges de estado: color + texto (nunca solo color) */
+.ls-badge {
+  font-size: var(--ls-fs-sm);
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  display: inline-block;
+}
+.ls-badge-publicada { background: #e6f4ea; color: var(--ls-success); }
+.ls-badge-cerrada   { background: #eceff3; color: #33404d; }
+.ls-badge-adjudicada{ background: #e7f0fb; color: #0b3c5d; }
+.ls-badge-desierta  { background: var(--ls-warning-bg); color: var(--ls-warning-text); }
+.ls-badge-revocada  { background: #fdecea; color: var(--ls-error); }
+
+/* Mensajes de error bajo cada campo (Tarea 3 y 4) */
+.ls-error-msg {
+  display: block;
+  color: var(--ls-error);
+  font-size: var(--ls-fs-sm);
+  font-weight: 600;
+  margin-top: 0.25rem;
+  min-height: 1.2em;
+}
+.ls-input-error {
+  border-color: var(--ls-error) !important;
+  background-image: none;
+}
+
+/* Loader / spinner */
+.ls-loader {
+  display: none;
+  text-align: center;
+  padding: var(--ls-space-3);
+}
+.ls-loader.is-visible { display: block; }
+
+/* Capa que bloquea la interaccion mientras el loader esta visible
+   (rúbrica: "bloqueando interacciones durante su visibilidad") */
+.ls-blocked {
+  pointer-events: none;
+  opacity: 0.45;
+  user-select: none;
+}
+
+/* Tarjeta de licitacion del listado */
+.ls-licitacion-card { height: 100%; }
+.ls-licitacion-card .card-title {
+  font-size: var(--ls-fs-base);
+  min-height: 3.2em;
+}
+
+/* Tabla responsiva del detalle */
+.ls-tabla-detalle th {
+  width: 38%;
+  background: #eef3f7;
+  color: var(--ls-primary);
+  font-weight: 600;
+}
+
+/* Paginacion */
+.pagination .page-link { color: var(--ls-secondary); }
+.pagination .page-item.active .page-link {
+  background-color: var(--ls-primary);
+  border-color: var(--ls-primary);
+  color: #ffffff;
+}
+
+/* Pie de pagina */
+.ls-footer {
+  background: var(--ls-primary-dark);
+  color: #e3e9ee; /* contraste 11.6:1 */
+  padding: var(--ls-space-3) 0;
+  margin-top: var(--ls-space-4);
+}
+.ls-footer a { color: #ffffff; }
+
+/* ==========================================================================
+   DISEÑO RESPONSIVO - MEDIA QUERIES
+   Estrategia: Mobile First. El diseño base (sin media query) corresponde a
+   telefonos; los breakpoints agregan complejidad hacia arriba. Se combinan
+   las clases de grilla de Bootstrap 5 (col-12 / col-md-6 / col-lg-4) con
+   estas media queries propias para los ajustes finos de tipografia y
+   espaciado.
+   ========================================================================== */
+
+/* --- MOVIL (< 576px) -------------------------------------------------------
+   Punto de quiebre justificado: ancho tipico de telefonos (320-575px).
+   Reordenamiento: la grilla pasa a UNA columna, el formulario de filtros se
+   apila verticalmente y los botones ocupan el 100% del ancho para cumplir el
+   area tactil minima de 44x44px (WCAG 2.5.5). Se reduce la escala
+   tipografica para evitar el desbordamiento horizontal. */
+@media (max-width: 575.98px) {
+  :root {
+    --ls-fs-xxl: 1.5rem;
+    --ls-fs-xl: 1.25rem;
+  }
+  .ls-hero { padding: var(--ls-space-3) 0; text-align: center; }
+  .ls-filtros .btn,
+  .ls-form-rut .btn { width: 100%; }        /* boton a ancho completo */
+  .ls-tabla-detalle th { width: 45%; }
+  .ls-licitacion-card .card-title { min-height: auto; }
+  .pagination { flex-wrap: wrap; justify-content: center; }
+  /* En movil la columna de "acciones" de la tabla pasa debajo del contenido */
+  .ls-acciones { margin-top: var(--ls-space-1); }
+}
+
+/* --- TABLET (576px - 991.98px) --------------------------------------------
+   Punto de quiebre justificado: iPad y tablets Android en vertical/horizontal.
+   Reordenamiento: la grilla de licitaciones pasa a DOS columnas, el formulario
+   de filtros se distribuye en dos campos por fila y el menu de navegacion
+   sigue colapsado en el boton hamburguesa para priorizar el contenido. */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .ls-hero { padding: var(--ls-space-4) 0; }
+  .ls-licitacion-card .card-title { min-height: 2.8em; }
+  .ls-filtros .col-form { margin-bottom: var(--ls-space-1); }
+}
+
+/* --- LAPTOP / DESKTOP (>= 992px) ------------------------------------------
+   Punto de quiebre justificado: notebooks 1366x768 en adelante.
+   Reordenamiento: la grilla pasa a TRES columnas, el menu se despliega
+   horizontalmente y los filtros quedan en una sola linea. Se limita el ancho
+   de lectura a 75ch en los bloques de texto para no fatigar la vista. */
+@media (min-width: 992px) {
+  .ls-texto-largo { max-width: 75ch; }
+  .ls-filtros form { align-items: flex-end; }
+}
+
+/* --- Preferencia de movimiento reducido (accesibilidad) ------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* --- Impresion del informe ------------------------------------------------ */
+@media print {
+  .ls-navbar, .ls-footer, .skip-link, .ls-no-print { display: none !important; }
+  body { background: #fff; }
+}

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     LicitaSeguro - Homepage corporativo
+     Examen Final Desarrollo Frontend
+     lang="es" declarado para que el lector de pantalla use la pronunciacion
+     correcta del idioma (WCAG 3.1.1 Idioma de la pagina).
+     ========================================================================== -->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- viewport: indispensable para que el diseño responsivo funcione en
+       telefonos y tablets. Sin maximum-scale para no impedir el zoom
+       (WCAG 1.4.4 Redimensionamiento del texto). -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="LicitaSeguro: portal que entrega informacion transparente y accesible sobre licitaciones publicas de Chile, con datos oficiales de Mercado Publico.">
+  <title>LicitaSeguro | Informacion transparente de licitaciones publicas</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Enlace de salto: primer elemento tabulable de la pagina.
+       Permite a quien navega con teclado omitir el menu (WCAG 2.4.1). -->
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <!-- ====================== CABECERA / NAVEGACION ====================== -->
+  <header>
+    <nav class="navbar navbar-expand-lg ls-navbar" aria-label="Menu principal">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <!-- Logotipo en SVG: se le da role="img" y un titulo accesible -->
+          <svg width="32" height="32" viewBox="0 0 32 32" role="img" aria-label="Logotipo de LicitaSeguro" focusable="false">
+            <title>Logotipo de LicitaSeguro</title>
+            <path d="M16 2 4 7v8c0 7.5 5.1 13.6 12 15 6.9-1.4 12-7.5 12-15V7L16 2z" fill="#f2a65a"/>
+            <path d="M13.4 20.6 9 16.2l1.8-1.8 2.6 2.6 7-7 1.8 1.8-8.8 8.8z" fill="#0b3c5d"/>
+          </svg>
+          <span>LicitaSeguro</span>
+        </a>
+
+        <!-- Boton hamburguesa: en movil y tablet colapsa el menu.
+             aria-controls + aria-expanded informan el estado al lector. -->
+        <button class="navbar-toggler bg-light" type="button"
+                data-bs-toggle="collapse" data-bs-target="#menu-principal"
+                aria-controls="menu-principal" aria-expanded="false"
+                aria-label="Abrir o cerrar el menu de navegacion">
+          <span class="navbar-toggler-icon" aria-hidden="true"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu-principal">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html" tabindex="0">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="licitaciones.html" tabindex="0">Licitaciones</a></li>
+            <li class="nav-item"><a class="nav-link" href="detalle.html" tabindex="0">Detalle</a></li>
+            <li class="nav-item"><a class="nav-link" href="proveedores.html" tabindex="0">Proveedores</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contacto" tabindex="0">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido-principal">
+
+    <!-- ====================== HERO ====================== -->
+    <section class="ls-hero" aria-labelledby="titulo-hero">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <!-- En movil (col-12) el texto queda arriba; en laptop (col-lg-7)
+               comparte fila con la tarjeta de cifras. -->
+          <div class="col-12 col-lg-7">
+            <h1 id="titulo-hero">Licitaciones publicas de Chile, claras y al alcance de todos</h1>
+            <p class="lead ls-texto-largo">
+              LicitaSeguro consulta en linea la informacion oficial de Mercado Publico
+              y la presenta de forma ordenada, accesible y facil de comparar.
+            </p>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <a class="btn ls-btn-primary btn-lg" href="licitaciones.html">Ver licitaciones</a>
+              <a class="btn btn-outline-light btn-lg" href="proveedores.html">Buscar un proveedor</a>
+            </div>
+          </div>
+          <div class="col-12 col-lg-5">
+            <div class="card ls-card">
+              <div class="card-body">
+                <h2 class="h5">Datos oficiales</h2>
+                <p class="mb-0 text-dark">
+                  Toda la informacion proviene de la API publica de
+                  <strong>Mercado Publico</strong> (ChileCompra) y se consulta en tiempo real:
+                  LicitaSeguro no almacena ni modifica los datos.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== MODULOS ====================== -->
+    <section class="container py-5" aria-labelledby="titulo-modulos">
+      <h2 id="titulo-modulos" class="mb-4">Que puedes hacer en LicitaSeguro</h2>
+
+      <!-- Grilla responsiva: 1 columna en movil, 2 en tablet, 3 en laptop -->
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card ls-card h-100">
+            <div class="card-body d-flex flex-column">
+              <span class="fs-2" aria-hidden="true">&#128203;</span>
+              <h3 class="h5 mt-2">Consultar licitaciones</h3>
+              <p>Revisa el listado publicado en Mercado Publico con toda la informacion actualizada.</p>
+              <a class="btn ls-btn-primary mt-auto" href="licitaciones.html"
+                 aria-label="Ir al modulo de consulta de licitaciones">Ir al listado</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card ls-card h-100">
+            <div class="card-body d-flex flex-column">
+              <span class="fs-2" aria-hidden="true">&#128269;</span>
+              <h3 class="h5 mt-2">Filtrar por fecha y estado</h3>
+              <p>Acota la busqueda por fecha de publicacion y por estado: activas, cerradas, adjudicadas y mas.</p>
+              <a class="btn ls-btn-primary mt-auto" href="licitaciones.html?estado=adjudicadas"
+                 aria-label="Ir al listado filtrado por licitaciones adjudicadas">Filtrar ahora</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card ls-card h-100">
+            <div class="card-body d-flex flex-column">
+              <span class="fs-2" aria-hidden="true">&#128196;</span>
+              <h3 class="h5 mt-2">Ver el detalle</h3>
+              <p>Accede a organismo, montos, fechas, items y estado de cada licitacion.</p>
+              <a class="btn ls-btn-primary mt-auto" href="detalle.html"
+                 aria-label="Ir al modulo de detalle de licitacion">Ver detalle</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card ls-card h-100">
+            <div class="card-body d-flex flex-column">
+              <span class="fs-2" aria-hidden="true">&#127970;</span>
+              <h3 class="h5 mt-2">Buscar proveedores por RUT</h3>
+              <p>Verifica si una empresa esta registrada como proveedora del Estado y conoce su razon social.</p>
+              <a class="btn ls-btn-primary mt-auto" href="proveedores.html"
+                 aria-label="Ir al modulo de busqueda de proveedores">Buscar proveedor</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card ls-card h-100">
+            <div class="card-body d-flex flex-column">
+              <span class="fs-2" aria-hidden="true">&#9855;</span>
+              <h3 class="h5 mt-2">Sitio accesible</h3>
+              <p>Navegacion por teclado, etiquetas ARIA, contrastes verificados y textos alternativos en todas las imagenes.</p>
+              <a class="btn ls-btn-primary mt-auto" href="#accesibilidad">Conocer mas</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card ls-card h-100">
+            <div class="card-body d-flex flex-column">
+              <span class="fs-2" aria-hidden="true">&#128241;</span>
+              <h3 class="h5 mt-2">Responsivo</h3>
+              <p>Una sola interfaz que se adapta a telefono, tablet y notebook sin perder informacion.</p>
+              <a class="btn ls-btn-primary mt-auto" href="licitaciones.html">Probar en tu equipo</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== ACCESIBILIDAD ====================== -->
+    <section class="container pb-5" id="accesibilidad" aria-labelledby="titulo-accesibilidad" tabindex="-1">
+      <div class="card ls-card">
+        <div class="card-body">
+          <h2 id="titulo-accesibilidad" class="h4">Compromiso de accesibilidad</h2>
+          <p class="ls-texto-largo">
+            LicitaSeguro se desarrolla siguiendo las Pautas de Accesibilidad para el
+            Contenido Web (WCAG 2.1, nivel AA) y la Norma Tecnica chilena sobre
+            sistemas y sitios web de los organos de la Administracion del Estado
+            (Decreto Supremo N.° 1 de 2015).
+          </p>
+          <ul>
+            <li>Contraste minimo de 4.5:1 en textos y 3:1 en componentes.</li>
+            <li>Todos los campos cuentan con etiqueta <code>&lt;label&gt;</code> asociada.</li>
+            <li>Navegacion completa con teclado (Tab, Shift+Tab y Enter).</li>
+            <li>Mensajes de estado anunciados mediante <code>aria-live</code>.</li>
+            <li>Imagenes e iconos con texto alternativo o marcados como decorativos.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== CONTACTO (formulario validado) ============ -->
+    <section class="container pb-5" id="contacto" aria-labelledby="titulo-contacto" tabindex="-1">
+      <h2 id="titulo-contacto" class="mb-3">Contacto</h2>
+      <div class="row g-4">
+        <div class="col-12 col-lg-7">
+          <div class="card ls-card">
+            <div class="card-body">
+
+              <!-- novalidate: se desactiva la validacion nativa del navegador
+                   para controlar los mensajes desde JavaScript y mostrarlos
+                   en español, detallados y bajo cada campo. -->
+              <form id="form-contacto" novalidate>
+
+                <div class="mb-3">
+                  <label class="form-label" for="contacto-nombre">
+                    Nombre completo <span class="text-danger" aria-hidden="true">*</span>
+                  </label>
+                  <input type="text" class="form-control" id="contacto-nombre" name="nombre"
+                         required aria-required="true"
+                         aria-describedby="error-contacto-nombre ayuda-contacto-nombre"
+                         autocomplete="name" tabindex="0">
+                  <small id="ayuda-contacto-nombre" class="form-text">Minimo 3 caracteres, solo letras.</small>
+                  <span class="ls-error-msg" id="error-contacto-nombre" role="alert" aria-live="polite"></span>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label" for="contacto-email">
+                    Correo electronico <span class="text-danger" aria-hidden="true">*</span>
+                  </label>
+                  <input type="email" class="form-control" id="contacto-email" name="email"
+                         required aria-required="true"
+                         aria-describedby="error-contacto-email ayuda-contacto-email"
+                         autocomplete="email" tabindex="0">
+                  <small id="ayuda-contacto-email" class="form-text">Ejemplo: nombre@empresa.cl</small>
+                  <span class="ls-error-msg" id="error-contacto-email" role="alert" aria-live="polite"></span>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label" for="contacto-rut">RUT de la empresa (opcional)</label>
+                  <input type="text" class="form-control" id="contacto-rut" name="rut"
+                         aria-describedby="error-contacto-rut ayuda-contacto-rut"
+                         placeholder="77.653.382-3" tabindex="0">
+                  <small id="ayuda-contacto-rut" class="form-text">Si lo indica, se valida con digito verificador.</small>
+                  <span class="ls-error-msg" id="error-contacto-rut" role="alert" aria-live="polite"></span>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label" for="contacto-mensaje">
+                    Mensaje <span class="text-danger" aria-hidden="true">*</span>
+                  </label>
+                  <textarea class="form-control" id="contacto-mensaje" name="mensaje" rows="4"
+                            required aria-required="true"
+                            aria-describedby="error-contacto-mensaje ayuda-contacto-mensaje"
+                            tabindex="0"></textarea>
+                  <small id="ayuda-contacto-mensaje" class="form-text">Entre 10 y 300 caracteres.</small>
+                  <span class="ls-error-msg" id="error-contacto-mensaje" role="alert" aria-live="polite"></span>
+                </div>
+
+                <button type="submit" class="btn ls-btn-primary" id="btn-enviar-contacto" tabindex="0">
+                  Enviar mensaje
+                </button>
+              </form>
+
+              <!-- Region viva: anuncia el resultado del envio -->
+              <div id="mensajes-contacto" class="mt-3" aria-live="polite" role="status"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-5">
+          <div class="card ls-card h-100">
+            <div class="card-body">
+              <h3 class="h5">LicitaSeguro SpA</h3>
+              <address class="mb-0">
+                Avenida Libertador Bernardo O'Higgins 1234, oficina 802<br>
+                Santiago, Region Metropolitana<br>
+                Telefono: <a href="tel:+56223456789">+56 2 2345 6789</a><br>
+                Correo: <a href="mailto:contacto@licitaseguro.cl">contacto@licitaseguro.cl</a>
+              </address>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================== PIE DE PAGINA ====================== -->
+  <footer class="ls-footer">
+    <div class="container">
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <p class="mb-1"><strong>LicitaSeguro</strong> - Informacion transparente de licitaciones publicas.</p>
+          <p class="mb-0">Datos obtenidos desde la API publica de Mercado Publico (ChileCompra).</p>
+        </div>
+        <div class="col-12 col-md-6">
+          <h2 class="h6">Enlaces</h2>
+          <ul class="list-unstyled mb-0">
+            <li><a href="licitaciones.html">Listado de licitaciones</a></li>
+            <li><a href="proveedores.html">Busqueda de proveedores</a></li>
+            <li><a href="https://www.mercadopublico.cl" rel="noopener noreferrer" target="_blank">
+              Mercado Publico <span class="sr-only-ls">(se abre en una ventana nueva)</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

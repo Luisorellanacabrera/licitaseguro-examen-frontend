@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 760" width="1100" height="760" role="img" aria-label="Mockup de la vista Listado de licitaciones con filtros, loader y paginacion, en laptop, tablet y movil">
+  <title>Mockup Vista 2 - Listado de licitaciones</title>
+  <style>
+    .t{font-family:'Segoe UI',Arial,sans-serif}
+    .tit{font-size:17px;font-weight:700;fill:#0b3c5d}
+    .sub{font-size:12px;fill:#52606d}
+    .lbl{font-size:11px;fill:#52606d}
+    .btxt{font-size:11px;font-weight:700;fill:#ffffff}
+    .box{fill:#ffffff;stroke:#d7dee6;stroke-width:1.5;rx:8}
+    .nota{font-size:10px;fill:#8a4b00}
+  </style>
+  <rect width="1100" height="760" fill="#f5f7fa"/>
+  <text class="t tit" x="24" y="30">Vista 2 - Listado de licitaciones (mockup)</text>
+  <text class="t sub" x="24" y="48">Flujo: filtros -> loader -> tarjetas de resultado -> paginacion de 10 en 10</text>
+
+  <!-- LAPTOP -->
+  <text class="t lbl" x="24" y="76">LAPTOP 1366px - tarjetas en 3 columnas</text>
+  <rect class="box" x="24" y="86" width="660" height="400"/>
+  <rect x="24" y="86" width="660" height="30" fill="#0b3c5d" rx="8"/>
+  <circle cx="44" cy="101" r="8" fill="#f2a65a"/>
+  <text class="t btxt" x="58" y="105">LicitaSeguro</text>
+  <text class="t btxt" x="470" y="105">Inicio  Licitaciones  Detalle  Proveedores</text>
+  <text class="t lbl" x="44" y="132">Inicio / Licitaciones   (migas de pan)</text>
+  <text class="t tit" x="44" y="154">Listado de licitaciones</text>
+
+  <!-- Filtros -->
+  <rect class="box" x="44" y="164" width="620" height="76"/>
+  <text class="t lbl" x="58" y="182">Fecha de publicacion *</text>
+  <rect x="58" y="188" width="170" height="26" fill="#ffffff" stroke="#52606d" rx="5"/>
+  <text class="t lbl" x="66" y="205">16-09-2026</text>
+  <text class="t lbl" x="58" y="228">Texto de ayuda / mensaje de error</text>
+  <text class="t lbl" x="252" y="182">Estado *</text>
+  <rect x="252" y="188" width="170" height="26" fill="#ffffff" stroke="#52606d" rx="5"/>
+  <text class="t lbl" x="260" y="205">Activas</text>
+  <rect x="444" y="188" width="118" height="26" fill="#146c94" rx="5"/>
+  <text class="t btxt" x="464" y="205">Buscar</text>
+  <rect x="572" y="188" width="80" height="26" fill="none" stroke="#52606d" rx="5"/>
+  <text class="t lbl" x="586" y="205">Limpiar</text>
+
+  <!-- Loader -->
+  <rect x="44" y="250" width="620" height="26" fill="#eef3f7" rx="5"/>
+  <circle cx="60" cy="263" r="6" fill="none" stroke="#146c94" stroke-width="2" stroke-dasharray="6 4"/>
+  <text class="t lbl" x="76" y="267">Loader: "Consultando la API de Mercado Publico..." (aria-live)</text>
+
+  <text class="t lbl" x="44" y="292">Mostrando 1 a 10 de 4503 licitaciones. Pagina 1 de 451.</text>
+
+  <!-- Tarjetas -->
+  <g>
+    <rect class="box" x="44" y="300" width="196" height="106"/><rect class="box" x="252" y="300" width="196" height="106"/><rect class="box" x="460" y="300" width="196" height="106"/>
+    <rect x="56" y="312" width="74" height="16" fill="#e6f4ea" rx="8"/><text class="t" x="62" y="324" font-size="9" fill="#0f5132">Publicada</text>
+    <rect x="264" y="312" width="74" height="16" fill="#e7f0fb" rx="8"/><text class="t" x="270" y="324" font-size="9" fill="#0b3c5d">Adjudicada</text>
+    <rect x="472" y="312" width="74" height="16" fill="#fdecea" rx="8"/><text class="t" x="478" y="324" font-size="9" fill="#b42318">Revocada</text>
+    <text class="t lbl" x="56" y="344">Nombre de la licitacion</text><text class="t lbl" x="264" y="344">Nombre de la licitacion</text><text class="t lbl" x="472" y="344">Nombre de la licitacion</text>
+    <text class="t lbl" x="56" y="360">Codigo / Fecha de cierre</text><text class="t lbl" x="264" y="360">Codigo / Fecha de cierre</text><text class="t lbl" x="472" y="360">Codigo / Fecha de cierre</text>
+    <rect x="56" y="370" width="172" height="24" fill="#146c94" rx="5"/><text class="t btxt" x="112" y="386">Ver detalle</text>
+    <rect x="264" y="370" width="172" height="24" fill="#146c94" rx="5"/><text class="t btxt" x="320" y="386">Ver detalle</text>
+    <rect x="472" y="370" width="172" height="24" fill="#146c94" rx="5"/><text class="t btxt" x="528" y="386">Ver detalle</text>
+  </g>
+
+  <!-- Paginacion -->
+  <g>
+    <rect x="230" y="420" width="60" height="24" fill="#eceff3" stroke="#d7dee6" rx="4"/><text class="t lbl" x="240" y="436">Anterior</text>
+    <rect x="294" y="420" width="26" height="24" fill="#0b3c5d" rx="4"/><text class="t btxt" x="304" y="436">1</text>
+    <rect x="324" y="420" width="26" height="24" fill="#ffffff" stroke="#d7dee6" rx="4"/><text class="t lbl" x="334" y="436">2</text>
+    <rect x="354" y="420" width="26" height="24" fill="#ffffff" stroke="#d7dee6" rx="4"/><text class="t lbl" x="364" y="436">3</text>
+    <rect x="384" y="420" width="64" height="24" fill="#ffffff" stroke="#d7dee6" rx="4"/><text class="t lbl" x="394" y="436">Siguiente</text>
+    <text class="t nota" x="230" y="462">"Anterior" queda deshabilitado en la pagina 1 y "Siguiente" en la ultima.</text>
+  </g>
+
+  <!-- TABLET -->
+  <text class="t lbl" x="712" y="76">TABLET 768px - 2 columnas</text>
+  <rect class="box" x="712" y="86" width="240" height="400"/>
+  <rect x="712" y="86" width="240" height="28" fill="#0b3c5d" rx="8"/>
+  <rect x="922" y="93" width="20" height="14" fill="#ffffff" rx="3"/>
+  <rect class="box" x="724" y="124" width="216" height="62"/>
+  <rect x="734" y="136" width="96" height="20" fill="#ffffff" stroke="#52606d" rx="4"/>
+  <rect x="838" y="136" width="92" height="20" fill="#ffffff" stroke="#52606d" rx="4"/>
+  <rect x="734" y="162" width="196" height="18" fill="#146c94" rx="4"/>
+  <text class="t btxt" x="800" y="175" font-size="9">Buscar</text>
+  <rect class="box" x="724" y="196" width="104" height="84"/><rect class="box" x="836" y="196" width="104" height="84"/>
+  <rect class="box" x="724" y="288" width="104" height="84"/><rect class="box" x="836" y="288" width="104" height="84"/>
+  <rect x="762" y="384" width="130" height="18" fill="#eceff3" stroke="#d7dee6" rx="4"/>
+  <text class="t lbl" x="790" y="397" font-size="9">Paginacion</text>
+
+  <!-- MOVIL -->
+  <text class="t lbl" x="980" y="76">MOVIL 375px</text>
+  <rect class="box" x="980" y="86" width="96" height="400"/>
+  <rect x="980" y="86" width="96" height="24" fill="#0b3c5d" rx="8"/>
+  <rect x="1054" y="92" width="14" height="11" fill="#ffffff" rx="2"/>
+  <rect class="box" x="988" y="118" width="80" height="72"/>
+  <rect x="996" y="128" width="64" height="16" fill="#ffffff" stroke="#52606d" rx="3"/>
+  <rect x="996" y="148" width="64" height="16" fill="#ffffff" stroke="#52606d" rx="3"/>
+  <rect x="996" y="168" width="64" height="16" fill="#146c94" rx="3"/>
+  <rect class="box" x="988" y="200" width="80" height="60"/>
+  <rect class="box" x="988" y="268" width="80" height="60"/>
+  <rect class="box" x="988" y="336" width="80" height="60"/>
+  <rect x="996" y="410" width="64" height="16" fill="#eceff3" stroke="#d7dee6" rx="3"/>
+
+  <!-- Justificacion -->
+  <rect class="box" x="24" y="506" width="1052" height="230"/>
+  <text class="t tit" x="44" y="532" font-size="14">Justificacion UI/UX de esta vista</text>
+  <text class="t lbl" x="44" y="556">Visibilidad del estado del sistema (Nielsen 1): el loader y el texto "Mostrando X a Y de Z" informan permanentemente que ocurre y cuanto falta.</text>
+  <text class="t lbl" x="44" y="576">Prevencion de errores (Nielsen 5): la fecha usa input type="date" con atributo max, y el estado es un select cerrado; el usuario no puede escribir un valor invalido.</text>
+  <text class="t lbl" x="44" y="596">Estados por color + texto: cada badge indica el estado con su nombre escrito, nunca solo con color (WCAG 1.4.1 Uso del color).</text>
+  <text class="t lbl" x="44" y="616">Carga cognitiva: 10 resultados por pagina (Tarea 3). Las tarjetas muestran solo nombre, codigo, cierre y estado; el resto queda en la vista de detalle.</text>
+  <text class="t lbl" x="44" y="636">Espaciado: grilla de 8px (gap de 16px entre tarjetas, 24px entre secciones) para generar agrupaciones claras segun la ley de proximidad (Gestalt).</text>
+  <text class="t lbl" x="44" y="656">Accesibilidad: label asociado a cada campo, aria-describedby con la ayuda y el error, region aria-live para el resumen, y foco devuelto al resumen al paginar.</text>
+  <text class="t nota" x="44" y="686">Reordenamiento responsivo: 3 columnas (>=992px) - 2 columnas (576-991px) - 1 columna con filtros apilados y botones al 100% (&lt;576px).</text>
+  <text class="t nota" x="44" y="708">Los botones de paginacion se envuelven (flex-wrap) y se centran en movil para evitar el scroll horizontal.</text>
+</svg>
