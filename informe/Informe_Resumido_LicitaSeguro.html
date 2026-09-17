@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informe resumido - Examen Final Desarrollo Frontend - LicitaSeguro</title>
+<style>
+  body{font-family:"Times New Roman",Georgia,serif;font-size:11.5pt;line-height:1.45;color:#1f2933;background:#f0f2f5;margin:0;padding:24px}
+  .hoja{background:#fff;max-width:21cm;margin:0 auto 20px;padding:2cm;box-shadow:0 2px 12px rgba(0,0,0,.12)}
+  h1,h2,h3{font-family:Arial,Helvetica,sans-serif;color:#0b3c5d;line-height:1.2}
+  h1{font-size:20pt;text-align:center;margin:0 0 4px}
+  h2{font-size:14pt;border-bottom:2px solid #0b3c5d;padding-bottom:3px;margin-top:24px}
+  h3{font-size:11.5pt;margin-top:16px;color:#146c94}
+  p{text-align:justify;margin:8px 0}
+  table{width:100%;border-collapse:collapse;margin:10px 0;font-size:10pt}
+  th,td{border:1px solid #d7dee6;padding:5px 7px;vertical-align:top}
+  th{background:#eef3f7;color:#0b3c5d;text-align:left}
+  code{font-family:Consolas,"Courier New",monospace;font-size:9.5pt}
+  pre{background:#f5f7fa;border:1px solid #d7dee6;padding:8px;font-family:Consolas,monospace;font-size:9pt;border-radius:5px;overflow:auto}
+  figure{margin:14px 0;text-align:center}
+  figure img{max-width:100%;border:1px solid #d7dee6;border-radius:5px}
+  figcaption{font-size:9.5pt;color:#52606d;font-style:italic;margin-top:4px}
+  .datos{font-size:10.5pt;margin:16px auto;width:auto}
+  .datos td{border:none;padding:2px 8px}
+  .sub{text-align:center;font-size:12pt;margin:0 0 6px}
+  ul{margin:6px 0 6px 18px;padding:0}
+  li{margin:3px 0}
+  .ok{background:#e6f4ea;border-left:4px solid #0f5132;padding:8px 12px;margin:10px 0}
+  @media print{body{background:#fff;padding:0}.hoja{box-shadow:none;margin:0;max-width:none;padding:1.6cm}.salto{page-break-before:always}}
+</style>
+</head>
+<body>
+
+<section class="hoja">
+  <p style="text-align:center;font-family:Arial,sans-serif;font-size:10pt;color:#52606d;margin:0">
+    INSTITUTO PROFESIONAL / CFT &middot; TECNICO EN INFORMATICA &middot; DESARROLLO FRONTEND
+  </p>
+  <h1 style="margin-top:14px">Portal web LicitaSeguro</h1>
+  <p class="sub">Informe resumido &mdash; Examen Final</p>
+
+  <table class="datos">
+    <tr><td><strong>Equipo:</strong></td><td>_____________________________</td></tr>
+    <tr><td><strong>Integrantes:</strong></td><td>_____________________________</td></tr>
+    <tr><td><strong>Docente:</strong></td><td>_____________________________</td></tr>
+    <tr><td><strong>Fecha:</strong></td><td>_____________________________</td></tr>
+    <tr><td><strong>Repositorio:</strong></td><td>https://github.com/Luisorellanacabrera/licitaseguro-examen-frontend</td></tr>
+  </table>
+
+<h2>1. El caso y la solucion</h2>
+<p>
+  LicitaSeguro entrega informacion sobre licitaciones publicas, pero no tiene portal propio:
+  todas sus busquedas se hacen dentro de Mercado Publico, una plataforma pensada para
+  compradores del Estado y no para la consulta rapida. La solucion desarrollada es un sitio
+  web publico de cuatro vistas que consume en linea la API oficial de Mercado Publico y
+  presenta la informacion de forma ordenada, responsiva y accesible. El sitio no almacena ni
+  modifica datos.
+</p>
+<table>
+  <thead><tr><th>Vista</th><th>Archivo</th><th>Funcion</th></tr></thead>
+  <tbody>
+    <tr><td>1. Homepage</td><td><code>index.html</code></td><td>Presentacion corporativa, acceso a los 3 modulos y formulario de contacto validado.</td></tr>
+    <tr><td>2. Listado</td><td><code>licitaciones.html</code></td><td>Filtros por fecha y estado, loader, tarjetas de resultado y paginacion de 10 en 10.</td></tr>
+    <tr><td>3. Detalle</td><td><code>detalle.html</code></td><td>Ficha completa de una licitacion a partir de su codigo.</td></tr>
+    <tr><td>4. Proveedores</td><td><code>proveedores.html</code></td><td>Busqueda de proveedor por RUT con validacion modulo 11.</td></tr>
+  </tbody>
+</table>
+<p><strong>Tecnologias:</strong> HTML5 semantico, CSS3 con variables y media queries propias,
+JavaScript ES6 puro (modulos IIFE, <code>async/await</code>, <code>fetch</code>,
+<code>AbortController</code>) y Bootstrap 5.3.3 por CDN para grilla y componentes.</p>
+
+<h2>2. Estructura del proyecto</h2>
+<pre>
+Eval_U3A_LicitaSeguro/
+|-- index.html  licitaciones.html  detalle.html  proveedores.html
+|-- css/styles.css        Paleta, tipografia, componentes y media queries comentadas
+|-- js/
+|   |-- config.js         Ticket, URLs de endpoints y constantes
+|   |-- api.js            Acceso a la API: fetch, timeout, codigos HTTP, limpieza de texto
+|   |-- validaciones.js   RUT (modulo 11), fecha, estado y codigo de licitacion
+|   |-- ui.js             Loader, alertas, errores por campo y paginacion accesible
+|   |-- home.js  licitaciones.js  detalle.js  proveedores.js   (un controlador por vista)
+|-- informe/              Informe, mockups y capturas
+|-- README.md
+</pre>
+<p>
+  La separacion en capas evita duplicar codigo: la validacion del RUT se escribe una sola vez
+  y se usa en la vista de proveedores y en el formulario de contacto; el control de errores de
+  la API vive completo en <code>api.js</code>.
+</p>
+
+<h2>3. Tarea 1: Mockups y decisiones UI/UX</h2>
+<p>
+  Se elaboraron cuatro mockups (uno por vista), cada uno dibujado en laptop 1366px, tablet
+  768px y movil 375px, con su justificacion incorporada. Archivos completos en
+  <code>informe/mockups/</code>.
+</p>
+
+<h3>Color y contraste</h3>
+<p>
+  Azul institucional #0b3c5d (confianza, sector publico) con naranja #f2a65a solo como acento
+  de foco. Todas las combinaciones se verificaron con el comprobador de WebAIM y quedaron
+  documentadas como comentario en <code>css/styles.css</code>:
+</p>
+<table>
+  <thead><tr><th>Uso</th><th>Texto / Fondo</th><th>Contraste</th><th>Nivel</th></tr></thead>
+  <tbody>
+    <tr><td>Titulos</td><td>#0b3c5d sobre #ffffff</td><td>10.4:1</td><td>AAA</td></tr>
+    <tr><td>Barra de navegacion</td><td>#ffffff sobre #0b3c5d</td><td>10.4:1</td><td>AAA</td></tr>
+    <tr><td>Texto base</td><td>#1f2933 sobre #f5f7fa</td><td>14.1:1</td><td>AAA</td></tr>
+    <tr><td>Boton primario</td><td>#ffffff sobre #146c94</td><td>5.1:1</td><td>AA</td></tr>
+    <tr><td>Mensaje de error</td><td>#b42318 sobre #ffffff</td><td>6.1:1</td><td>AA</td></tr>
+  </tbody>
+</table>
+<p>
+  Ningun estado se comunica solo con color (WCAG 1.4.1): los badges escriben siempre la palabra
+  ("Estado: Publicada") y las alertas llevan icono y titulo.
+</p>
+
+<h3>Tipografia y espaciado</h3>
+<p>
+  Familia <code>Segoe UI / system-ui</code>, sin serifa, disponible en el sistema (sin descargas
+  externas). Escala modular de razon 1.25: H1 31px, H2 25px, H3 20px, cuerpo 16px, textos de
+  ayuda 14px. Interlineado 1.6 (WCAG 1.4.12) y ancho de lectura limitado a 75 caracteres. Todo
+  el espaciado es multiplo de 8px y los elementos interactivos miden al menos 44x44px
+  (WCAG 2.5.5).
+</p>
+
+<h3>Usabilidad (heuristicas de Nielsen aplicadas)</h3>
+<ul>
+  <li><strong>Visibilidad del estado:</strong> loader con texto y resumen "Mostrando 1 a 10 de N licitaciones. Pagina X de Y".</li>
+  <li><strong>Prevencion de errores:</strong> fecha con <code>input type="date"</code> y atributo <code>max</code>; estado como select cerrado; RUT formateado mientras se escribe.</li>
+  <li><strong>Consistencia:</strong> mismo header, footer, paleta y estilo de tarjeta en las 4 vistas.</li>
+  <li><strong>Control del usuario:</strong> "Limpiar filtros", "Volver al listado" y migas de pan.</li>
+  <li><strong>Recuperacion de errores:</strong> cada mensaje explica la causa y la correccion ("el digito correcto es 3"), nunca un generico "dato invalido".</li>
+</ul>
+
+<figure>
+  <img src="mockups/mockup-2-listado.svg" alt="Mockup del listado de licitaciones con panel de filtros, loader, tarjetas de resultados y paginacion en laptop, tablet y movil">
+  <figcaption>Figura 1. Mockup de la Vista 2 (listado). Los otros tres estan en <code>informe/mockups/</code>.</figcaption>
+</figure>
+
+<h2>4. Tarea 2: Diseño responsivo</h2>
+<p>
+  Estrategia <strong>Mobile First</strong>: el diseño base corresponde al telefono y los puntos
+  de quiebre agregan complejidad hacia arriba, combinando clases de Bootstrap
+  (<code>col-12 col-md-6 col-lg-4</code>) con media queries propias comentadas.
+</p>
+<table>
+  <thead><tr><th>Dispositivo</th><th>Breakpoint</th><th>Reordenamiento del contenido</th></tr></thead>
+  <tbody>
+    <tr><td>Movil</td><td>&lt; 576px</td><td>Una columna, menu hamburguesa, filtros apilados, botones al 100% del ancho, tipografia reducida, paginacion centrada.</td></tr>
+    <tr><td>Tablet</td><td>576 a 991.98px</td><td>Dos columnas de tarjetas, filtros de a dos por fila, menu aun colapsado, etiquetas de tabla al 45%.</td></tr>
+    <tr><td>Laptop</td><td>&ge; 992px</td><td>Tres columnas, menu horizontal desplegado, filtros en una sola linea, ancho de lectura de 75 caracteres.</td></tr>
+  </tbody>
+</table>
+<figure>
+  <img src="capturas/captura-listado.png" alt="Captura del listado de licitaciones en notebook con las tarjetas en tres columnas">
+  <figcaption>Figura 2. Listado en laptop (tres columnas). Capturas de tablet y movil en <code>informe/capturas/</code>.</figcaption>
+</figure>
+<div class="ok">
+  <strong>Verificado:</strong> a 375px, <code>document.documentElement.scrollWidth</code> es igual
+  a <code>clientWidth</code> (375 = 375): no hay desbordamiento ni scroll horizontal. Las tablas
+  anchas del detalle van dentro de <code>div.table-responsive</code>, que desplaza solo la tabla.
+</div>
+
+<h2>5. Tarea 3: Validaciones, loader y paginacion</h2>
+<p>
+  Todos los formularios usan <code>novalidate</code>: la validacion nativa se desactiva para
+  controlar desde JavaScript el idioma, el momento y la ubicacion del mensaje. Cada error se
+  escribe en un <code>span</code> ubicado <strong>bajo el campo</strong>, asociado por
+  <code>aria-describedby</code>, con <code>role="alert"</code>, y el campo recibe
+  <code>aria-invalid="true"</code> mas borde rojo: el error se percibe por texto, color y
+  semantica.
+</p>
+<table>
+  <thead><tr><th>Campo</th><th>Caso</th><th>Mensaje</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="2">Fecha</td><td>Vacia</td><td>Debe seleccionar una fecha de publicacion para filtrar.</td></tr>
+    <tr><td>Futura</td><td>La fecha no puede ser posterior al dia de hoy.</td></tr>
+    <tr><td>Estado</td><td>Sin seleccionar</td><td>Debe seleccionar un estado de licitacion.</td></tr>
+    <tr><td>Codigo</td><td>Formato invalido</td><td>El codigo no cumple el formato de Mercado Publico. Ejemplo valido: 1057539-17-LR25</td></tr>
+    <tr><td rowspan="4">RUT</td><td>Vacio</td><td>El RUT es obligatorio. Ejemplo: 77.653.382-3</td></tr>
+    <tr><td>Caracteres invalidos</td><td>El RUT solo admite numeros, puntos, guion y la letra K.</td></tr>
+    <tr><td>Incompleto</td><td>El RUT esta incompleto: debe tener al menos 7 digitos mas el digito verificador.</td></tr>
+    <tr><td>DV incorrecto</td><td>El digito verificador no corresponde. Para 77.653.382 el digito correcto es 3.</td></tr>
+    <tr><td>Correo</td><td>Sin arroba / formato</td><td>El correo debe incluir el simbolo @. Ejemplo: nombre@empresa.cl</td></tr>
+    <tr><td>Mensaje</td><td>Menor a 10 caracteres</td><td>El mensaje es muy corto: faltan N caracteres para el minimo de 10.</td></tr>
+  </tbody>
+</table>
+
+<h3>Loader</h3>
+<p>
+  Aparece <strong>antes</strong> de lanzar la peticion, deshabilita el boton que la origino y
+  bloquea la zona de resultados con <code>pointer-events:none</code>; se oculta en el instante en
+  que la respuesta fue procesada, tanto si hubo exito como error. Declara
+  <code>role="status"</code> y <code>aria-live="polite"</code>.
+</p>
+<pre>
+UI.mostrarLoader(ID.loader, { bloquear: ID.resultados, boton: ID.boton });
+const respuesta = await API.obtenerLicitaciones(fecha, estado);
+UI.ocultarLoader(ID.loader, { bloquear: ID.resultados, boton: ID.boton });
+</pre>
+
+<h3>Paginacion</h3>
+<p>
+  La API devuelve todas las licitaciones del dia (por ejemplo 4.503), de modo que la paginacion
+  se resuelve en el cliente con <code>slice()</code> sobre el arreglo guardado en el estado de la
+  vista. Constante <code>ITEMS_POR_PAGINA = 10</code>; si hay 10 o menos resultados la paginacion
+  no se dibuja; "Anterior" queda deshabilitado en la primera pagina y "Siguiente" en la ultima;
+  la pagina activa se marca con <code>aria-current="page"</code>; al cambiar de pagina el foco
+  vuelve al resumen de resultados. Un unico listener delegado atiende todos los botones.
+</p>
+
+<h2>6. Tarea 4: Validacion del RUT y endpoints</h2>
+<p>Algoritmo modulo 11 implementado en <code>js/validaciones.js</code>:</p>
+<pre>
+function calcularDigitoVerificador(cuerpo) {
+  let suma = 0, multiplicador = 2;
+  for (let i = cuerpo.length - 1; i >= 0; i--) {          // de derecha a izquierda
+    suma += parseInt(cuerpo.charAt(i), 10) * multiplicador;
+    multiplicador = multiplicador === 7 ? 2 : multiplicador + 1;  // serie 2..7
+  }
+  const resto = 11 - (suma % 11);
+  if (resto === 11) return '0';
+  if (resto === 10) return 'K';
+  return String(resto);
+}
+</pre>
+<p>El campo se formatea solo mientras se escribe, porque el endpoint exige el RUT con puntos y guion.</p>
+<table>
+  <thead><tr><th>#</th><th>Funcion</th><th>Endpoint</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Listado</td><td><code>GET /servicios/v1/publico/licitaciones.json?fecha=ddmmaaaa&amp;estado=nombre&amp;ticket=cod</code></td></tr>
+    <tr><td>2</td><td>Detalle</td><td><code>GET /servicios/v1/publico/licitaciones.json?codigo=1057539-17-LR25&amp;ticket=cod</code></td></tr>
+    <tr><td>3</td><td>Proveedor</td><td><code>GET /servicios/v1/Publico/Empresas/BuscarProveedor?rutempresaproveedor=77.653.382-3&amp;ticket=cod</code></td></tr>
+  </tbody>
+</table>
+<p>
+  El encadenamiento es el indicado en el documento de apoyo: del listado se obtiene el
+  <code>CodigoExterno</code>, que viaja por la URL a la vista de detalle para consultar el
+  segundo endpoint; el tercero se consulta aparte con el RUT ya validado.
+</p>
+
+<h2>7. Tarea 5: Accesibilidad</h2>
+<table>
+  <thead><tr><th>Requerimiento</th><th>Implementacion</th></tr></thead>
+  <tbody>
+    <tr><td>Label</td><td>Todos los input, select y textarea tienen label asociado por <code>for</code>/<code>id</code>, con asterisco y <code>aria-required</code> en los obligatorios.</td></tr>
+    <tr><td>ARIA</td><td><code>aria-label</code>, <code>aria-describedby</code> (ayuda + error), <code>aria-live</code> en loaders y alertas, <code>aria-invalid</code>, <code>aria-expanded</code>/<code>aria-controls</code> en el menu y <code>aria-current="page"</code>.</td></tr>
+    <tr><td>Teclado</td><td><code>tabindex="0"</code> en enlaces, campos y botones; <code>tabindex="-1"</code> en los contenedores que reciben foco por script; enlace "Saltar al contenido principal" como primer elemento tabulable.</td></tr>
+    <tr><td>Foco</td><td>Regla <code>:focus-visible</code> con contorno naranja de 3px; nunca <code>outline:none</code> sin reemplazo. Al fallar una validacion el foco va al primer campo con error.</td></tr>
+    <tr><td>Imagenes</td><td>Logotipo SVG con <code>role="img"</code>, <code>title</code> y <code>aria-label</code>; iconos decorativos con <code>aria-hidden="true"</code>.</td></tr>
+    <tr><td>Semantica</td><td>header, nav, main, section, article, aside y footer; un solo H1 por vista; tablas con <code>caption</code> y <code>scope</code>.</td></tr>
+    <tr><td>Otros</td><td><code>lang="es"</code>, zoom no bloqueado (WCAG 1.4.4) y media query <code>prefers-reduced-motion</code>.</td></tr>
+  </tbody>
+</table>
+
+<h2>8. Tarea 6: Limpieza de datos y control de errores</h2>
+<p>
+  <code>API.limpiarTexto()</code> corrige tildes mal codificadas (mojibake tipo <code>Ã‰</code>),
+  normaliza comillas tipograficas y espacios duros; <code>API.valorSeguro()</code> devuelve
+  <code>"--"</code> cuando el campo viene nulo o vacio, evitando que la interfaz colapse ante
+  respuestas incompletas.
+</p>
+<table>
+  <thead><tr><th>Escenario</th><th>Deteccion</th><th>Mensaje al usuario</th></tr></thead>
+  <tbody>
+    <tr><td>Servidor caido / sin red</td><td><code>catch</code> del fetch</td><td>Servidor no disponible o sin conexion a internet.</td></tr>
+    <tr><td>Demora excesiva</td><td><code>AbortController</code> a los 20 s</td><td>La consulta demoro demasiado y fue cancelada.</td></tr>
+    <tr><td>HTTP 400 / 401 / 403 / 404</td><td><code>respuesta.status</code></td><td>Consulta invalida / ticket no autorizado / sin permisos / recurso no encontrado.</td></tr>
+    <tr><td>HTTP 429</td><td><code>respuesta.status</code></td><td>Se alcanzo el limite de consultas por minuto. Espere unos segundos.</td></tr>
+    <tr><td>HTTP 500 / 502 / 503 / 504</td><td><code>respuesta.status</code></td><td>Servidor no disponible. Intente mas tarde.</td></tr>
+    <tr><td>JSON invalido</td><td><code>try/catch</code> en <code>JSON.parse</code></td><td>La respuesta no tiene el formato esperado.</td></tr>
+    <tr><td>Listado vacio</td><td><code>Listado.length === 0</code></td><td>No se encontraron licitaciones para esa fecha y estado.</td></tr>
+    <tr><td>Detalle inexistente</td><td>Listado vacio</td><td>Error al cargar detalles de la licitacion. Intente mas tarde.</td></tr>
+    <tr><td>Proveedor inexistente</td><td><code>listaEmpresas.length === 0</code></td><td>Proveedor no encontrado.</td></tr>
+  </tbody>
+</table>
+<p>En todos los casos el loader se oculta antes del mensaje, el boton se rehabilita y la alerta se anuncia por <code>aria-live="assertive"</code>.</p>
+
+<h2>9. Pruebas realizadas</h2>
+<table>
+  <thead><tr><th>Prueba</th><th>Resultado obtenido</th></tr></thead>
+  <tbody>
+    <tr><td>Listado con estado "activas"</td><td>4.503 licitaciones, 451 paginas, 10 por pagina</td></tr>
+    <tr><td>Detalle codigo 1057539-17-LR25</td><td>Ficha completa, estado "Adjudicada" (Hospital Puerto Montt)</td></tr>
+    <tr><td>RUT 77.653.382-3</td><td>SERVICIOS Y SOLUCIONES INFORMATICAS FENRIR SPA</td></tr>
+    <tr><td>RUT 77.653.382-K</td><td>Mensaje indicando que el digito correcto es 3</td></tr>
+    <tr><td>Fecha futura / estado sin elegir</td><td>Error bajo el campo y foco en el campo</td></tr>
+    <tr><td>Formulario de contacto vacio</td><td>Tres mensajes de error simultaneos</td></tr>
+    <tr><td>Resolucion 375px</td><td>Sin scroll horizontal (scrollWidth = clientWidth = 375)</td></tr>
+    <tr><td>Navegacion completa con teclado</td><td>Foco visible y orden logico en las 4 vistas</td></tr>
+    <tr><td>Consola del navegador</td><td>0 errores de JavaScript</td></tr>
+  </tbody>
+</table>
+
+<h2>10. Ejecucion del proyecto</h2>
+<p>
+  Es un proyecto estatico, pero debe abrirse con un servidor local: los navegadores bloquean
+  <code>fetch</code> desde el protocolo <code>file://</code>.
+</p>
+<pre>
+cd Eval_U3A_LicitaSeguro
+python3 -m http.server 8080
+# Abrir http://localhost:8080/index.html
+</pre>
+<p>El ticket de la API esta en <code>js/config.js</code> (constante <code>TICKET</code>).</p>
+
+<h2>11. Conclusiones</h2>
+<p>
+  Es posible construir una aplicacion frontend util y de mediana complejidad con solo HTML, CSS,
+  JavaScript y un framework CSS. La organizacion en capas fue determinante: permitio reutilizar
+  la validacion del RUT y el manejo del loader en varias vistas, y concentrar todo el control de
+  errores de la API en un solo archivo.
+</p>
+<p>
+  La mayor dificultad tecnica fueron los datos de Mercado Publico: campos nulos, textos en
+  mayusculas y caracteres mal codificados. Eso obligo a construir una capa de normalizacion previa
+  al renderizado, lo que confirma que consumir un endpoint no se agota en obtener la respuesta,
+  sino en validarla y presentarla de forma confiable. En accesibilidad quedo claro que no es un
+  agregado final: contraste, jerarquia de encabezados, orden de tabulacion y manejo del foco se
+  definieron desde el mockup, evitando rehacer la interfaz al terminar.
+</p>
+
+<h2>12. Referencias</h2>
+<ul>
+  <li>ChileCompra. <em>Documentacion API Mercado Publico - Licitaciones</em>. https://api.mercadopublico.cl/</li>
+  <li>W3C. <em>Web Content Accessibility Guidelines (WCAG) 2.1</em>. https://www.w3.org/TR/WCAG21/</li>
+  <li>Nielsen, J. <em>10 Usability Heuristics for User Interface Design</em>. Nielsen Norman Group.</li>
+  <li>Bootstrap. <em>Documentacion oficial v5.3</em>. https://getbootstrap.com/docs/5.3/</li>
+  <li>MDN Web Docs. <em>Fetch API, AbortController y ARIA</em>. https://developer.mozilla.org/</li>
+</ul>
+</section>
+</body>
+</html>

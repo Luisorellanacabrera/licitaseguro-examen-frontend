@@ -50,7 +50,8 @@ Eval_U3A_LicitaSeguro/
 │   ├── detalle.js          Controlador del detalle
 │   └── proveedores.js      Controlador de la búsqueda de proveedores
 ├── informe/
-│   ├── Informe_Examen_Frontend_LicitaSeguro.pdf   Informe final (29 páginas)
+│   ├── Informe_Examen_Frontend_LicitaSeguro.pdf   Informe final completo (29 páginas)
+│   ├── Informe_Resumido_LicitaSeguro.pdf          Informe resumido (8 páginas)
 │   ├── Informe_Examen_Frontend_LicitaSeguro.html  Fuente del informe
 │   ├── mockups/            4 mockups en SVG (Tarea 1)
 │   └── capturas/           Capturas del sitio funcionando
