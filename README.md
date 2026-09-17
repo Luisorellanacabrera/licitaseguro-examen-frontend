@@ -5,8 +5,9 @@ fecha y estado, revisar el detalle de cada una y buscar proveedores por RUT, con
 la API oficial de Mercado Público (ChileCompra).
 
 **Asignatura:** Desarrollo Frontend — Evaluación 3 (Examen transversal)
-**Equipo:** _(completar)_
-**Integrantes:** _(completar)_
+**Repositorio:** https://github.com/Luisorellanacabrera/licitaseguro-examen-frontend
+**Estudiante:** Luis Orellana Cabrera
+**Modalidad:** Trabajo individual
 
 ---
 
@@ -33,7 +34,7 @@ Instalar la extensión **Live Server** y presionar **Go Live** con `index.html` 
 ## 2. Estructura de carpetas
 
 ```
-Eval_U3A_LicitaSeguro/
+Eval_U3A_Orellana/
 ├── index.html              Vista 1: homepage corporativo + formulario de contacto
 ├── licitaciones.html       Vista 2: listado con filtros, loader y paginación
 ├── detalle.html            Vista 3: detalle de una licitación
